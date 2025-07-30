@@ -1,0 +1,1 @@
+// Shared preferences untuk penyimpanan data lokal
