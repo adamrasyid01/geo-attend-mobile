@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:geo_attend/constants/app_constants.dart'; // Pastikan path ini benar
 
 Widget customTextfield({
-  required TextEditingController inputController,
+  TextEditingController? inputController,
   required String label,
-  TextInputType? keyboardType = TextInputType.text,
+  TextInputType? keyboardType,
   required String hintText,
   required Color cursorColor,
-  double width = double.infinity, // Properti width tidak terlalu berguna di sini karena TextFormField sudah flexibel
+  double width = double.infinity,
+  void Function(String)? onChanged,
   FormFieldValidator<String>? validator,
 
   // --- Properti untuk fitur password (harus dikelola di parent) ---
@@ -28,6 +29,7 @@ Widget customTextfield({
       TextFormField(
         maxLines: isPassword ? 1 : null, // Batasi maxLines untuk password field
         cursorColor: cursorColor,
+        onChanged: onChanged,
         controller: inputController,
         keyboardType: keyboardType,
         obscureText: obscureText, // Gunakan properti obscureText dari parent

@@ -4,7 +4,7 @@ import 'app_routes.dart';
 import 'route_pages.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: AppRoutes.home,
+  initialLocation: AppRoutes.login,
   routes: [
     GoRoute(path: AppRoutes.splash, builder: RoutePages.splashScreen),
     GoRoute(path: AppRoutes.login, builder: RoutePages.login),
