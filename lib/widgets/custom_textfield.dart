@@ -10,11 +10,10 @@ Widget customTextfield({
   double width = double.infinity,
   void Function(String)? onChanged,
   FormFieldValidator<String>? validator,
+  String? initialValue,
+  Widget? suffixIcon, // Tambahkan properti untuk ikon suffix
 
-  // --- Properti untuk fitur password (harus dikelola di parent) ---
-  bool isPassword = false,
   bool obscureText = false, // State visibilitas password dari parent
-  VoidCallback? onToggleObscureText,
   String obscureCharacter = '*',
 }) {
   return Column(
@@ -27,7 +26,8 @@ Widget customTextfield({
       ),
       const SizedBox(height: 8),
       TextFormField(
-        maxLines: isPassword ? 1 : null, // Batasi maxLines untuk password field
+        initialValue: initialValue,
+        maxLines: 1, // Batasi maxLines untuk password field
         cursorColor: cursorColor,
         onChanged: onChanged,
         controller: inputController,
@@ -39,16 +39,7 @@ Widget customTextfield({
           filled: true,
           hintText: hintText,
           hintStyle: AppConstants.regular15.copyWith(color: Colors.grey),
-          suffixIcon: isPassword
-              ? IconButton(
-                  icon: Icon(
-                    // Ikon berdasarkan properti obscureText dari parent
-                    obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: Colors.grey,
-                  ),
-                  onPressed: onToggleObscureText, // Panggil callback ke parent
-                )
-              : null, // Jika bukan field password, tidak ada ikon
+          suffixIcon:suffixIcon,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(color: AppConstants.gray500),

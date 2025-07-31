@@ -15,6 +15,7 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Either<Failure, User>> authLogin(String email, String password) async {
     try {
       UserModel user = await authremoteDatasource.authLogin(email, password);
+      print('User logged in: ${user.email}');
       return Right(user);
     } on GeneralException catch (e) {
       return Left(Failure(e.message));

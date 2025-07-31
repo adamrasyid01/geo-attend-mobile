@@ -12,7 +12,6 @@ class AuthFormState {
   });
   
   AuthFormState copyWith({
-    String? fullName,
     String? email,
     String? password,
     bool? isObscure,
