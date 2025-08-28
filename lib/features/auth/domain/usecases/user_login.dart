@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:geo_attend/config/error/failure.dart';
+import 'package:geo_attend/core/errors/failure.dart';
 import 'package:geo_attend/features/auth/domain/entities/user.dart';
 import 'package:geo_attend/features/auth/domain/repositories/auth_repository.dart';
 

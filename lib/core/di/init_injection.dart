@@ -4,10 +4,6 @@ var myInjection = GetIt.instance;
 
 Future<void> initInjection() async {
   // Supabase
-  // Register Supabase client
-  myInjection.registerLazySingleton(
-    () => SupabaseClient(supabaseUrl, supabaseAnonKey)
-  );
   
   // FEATURE - AUTH
   // BLOC
@@ -26,7 +22,7 @@ Future<void> initInjection() async {
   // DATA SOURCE
    myInjection.registerLazySingleton<AuthRemoteDatasource>(() =>
       AuthRemoteDataSourceImpl(
-         supabase:myInjection()));
+         dio:myInjection()));
 
   // CUBIT
   myInjection.registerFactory<AuthFormCubit>(

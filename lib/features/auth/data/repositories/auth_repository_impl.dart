@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:geo_attend/config/error/exception.dart';
-import 'package:geo_attend/config/error/failure.dart';
+import 'package:geo_attend/core/errors/exception.dart';
+import 'package:geo_attend/core/errors/failure.dart';
 import 'package:geo_attend/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:geo_attend/features/auth/data/models/user_model.dart';
 import 'package:geo_attend/features/auth/domain/entities/user.dart';

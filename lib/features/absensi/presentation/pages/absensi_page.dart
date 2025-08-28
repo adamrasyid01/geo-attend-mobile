@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:geo_attend/config/routes/app_routes.dart';
+import 'package:geo_attend/utils/routes/app_routes.dart';
 import 'package:geo_attend/constants/app_constants.dart';
 import 'package:geo_attend/widgets/custom_navbar.dart';
 import 'package:go_router/go_router.dart';
