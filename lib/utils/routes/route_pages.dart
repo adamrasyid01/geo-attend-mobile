@@ -4,8 +4,8 @@ import 'package:geo_attend/features/absensi/presentation/pages/history_page.dart
 import 'package:geo_attend/features/absensi/presentation/pages/izin_page.dart';
 import 'package:geo_attend/features/absensi/presentation/pages/take_photo_page.dart';
 import 'package:geo_attend/features/auth/presentation/pages/login_page.dart';
-import 'package:geo_attend/features/splash/presentation/pages/splash_screen.dart';
-import 'package:geo_attend/pages/home_page.dart';
+import 'package:geo_attend/features/splash/presentation/pages/splash_page.dart';
+import 'package:geo_attend/pages/main_navigation_page.dart';
 import 'package:go_router/go_router.dart';
 
 class RoutePages {
@@ -13,8 +13,8 @@ class RoutePages {
       const SplashScreen();
   static Widget login(BuildContext context, GoRouterState state) =>
       const LoginPage();
-  static Widget home(BuildContext context, GoRouterState state) =>
-      const HomePage(); // Replace with actual HomePage when implemented
+  static Widget mainNavigationPage(BuildContext context, GoRouterState state) =>
+      const MainNavigationPage (); // Replace with actual HomePage when implemented
   static Widget absensi(BuildContext context, GoRouterState state) =>
       const AbsensiPage(); // Replace with actual AbsensiPage when implemented
   static Widget takePhoto(BuildContext context, GoRouterState state) =>

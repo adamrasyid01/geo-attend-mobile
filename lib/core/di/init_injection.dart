@@ -3,7 +3,11 @@ part of 'import_init_injection.dart';
 var myInjection = GetIt.instance;
 
 Future<void> initInjection() async {
-  // Supabase
+
+  // DIO
+   myInjection.registerLazySingleton(
+    () => Dio()
+  );
   
   // FEATURE - AUTH
   // BLOC
