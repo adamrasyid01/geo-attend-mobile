@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geo_attend/constants/app_constants.dart';
 import 'package:geo_attend/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:geo_attend/features/auth/presentation/bloc/auth_form_cubit.dart';
+import 'package:geo_attend/widgets/custom_textfield.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -114,22 +115,22 @@ class LoginPage extends StatelessWidget {
                                 );
                               },
                             ),
-                            _LoginField(
+                            customTextfield(
                               label: 'Email',
                               hintText: 'Masukkan Email Anda',
                               keyboardType: TextInputType.emailAddress,
                               initialValue: formState.email,
-                              isCompact: isShortScreen,
+                              cursorColor: _primaryBlue,
                               onChanged:
                                   context.read<AuthFormCubit>().updateEmail,
                             ),
                             SizedBox(height: isShortScreen ? 12 : 16),
-                            _LoginField(
+                            customTextfield(
                               label: 'Password',
                               hintText: 'Masukkan Password Anda',
                               initialValue: formState.password,
                               obscureText: formState.isObscure,
-                              isCompact: isShortScreen,
+                              cursorColor: _primaryBlue,
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   formState.isObscure
@@ -249,79 +250,3 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _LoginField extends StatelessWidget {
-  const _LoginField({
-    required this.label,
-    required this.hintText,
-    required this.onChanged,
-    this.initialValue,
-    this.keyboardType,
-    this.obscureText = false,
-    this.isCompact = false,
-    this.suffixIcon,
-  });
-
-  final String label;
-  final String hintText;
-  final ValueChanged<String> onChanged;
-  final String? initialValue;
-  final TextInputType? keyboardType;
-  final bool obscureText;
-  final bool isCompact;
-  final Widget? suffixIcon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: AppConstants.semibold14.copyWith(
-            color: const Color(0xFF2B2C31),
-          ),
-        ),
-        SizedBox(height: isCompact ? 8 : 10),
-        SizedBox(
-          height: isCompact ? 45 : 40,
-          child: TextFormField(
-            initialValue: initialValue,
-            keyboardType: keyboardType,
-            obscureText: obscureText,
-            obscuringCharacter: '*',
-            cursorColor: LoginPage._primaryBlue,
-            onChanged: onChanged,
-            style: AppConstants.regular15.copyWith(
-              color: const Color(0xFF222328),
-            ),
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              hintText: hintText,
-              hintStyle: AppConstants.regular15.copyWith(
-                color: const Color(0xFF92939A),
-              ),
-              suffixIcon: suffixIcon,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 26),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: const BorderSide(color: LoginPage._borderGray),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: const BorderSide(color: LoginPage._borderGray),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: const BorderSide(
-                  color: LoginPage._primaryBlue,
-                  width: 1.2,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}

@@ -7,7 +7,9 @@ abstract class SplashState extends Equatable {
   List<Object> get props => [];
 }
 
-class SplashInitial extends SplashState {}
+class SplashInitial extends SplashState {
+  const SplashInitial();
+}
 
 class SplashNavigate extends SplashState {
   final String route;
@@ -17,4 +19,6 @@ class SplashNavigate extends SplashState {
   List<Object> get props => [route];
 }
 
-class SplashFadingIn extends SplashState{}
+class SplashFadingIn extends SplashState {
+  const SplashFadingIn();
+}
