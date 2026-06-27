@@ -8,6 +8,7 @@ final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(path: AppRoutes.splash, builder: RoutePages.splashScreen),
     GoRoute(path: AppRoutes.login, builder: RoutePages.login),
+    GoRoute(path: AppRoutes.beranda, builder: RoutePages.beranda),
     GoRoute(
       path: AppRoutes.mainNavigation,
       builder: RoutePages.mainNavigationPage,

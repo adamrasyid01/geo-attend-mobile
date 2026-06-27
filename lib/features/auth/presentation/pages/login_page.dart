@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geo_attend/constants/app_constants.dart';
-import 'package:geo_attend/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:geo_attend/features/auth/presentation/bloc/auth_form_cubit.dart';
+import 'package:geo_attend/utils/routes/app_routes.dart';
 import 'package:geo_attend/widgets/custom_textfield.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -87,34 +88,6 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: isShortScreen ? 18 : 24),
-                            BlocBuilder<AuthBloc, AuthState>(
-                              builder: (context, state) {
-                                if (state is! AuthFailure) {
-                                  return const SizedBox.shrink();
-                                }
-
-                                return Container(
-                                  width: double.infinity,
-                                  margin: const EdgeInsets.only(bottom: 14),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.red.shade50,
-                                    borderRadius: BorderRadius.circular(14),
-                                    border: Border.all(
-                                      color: Colors.red.shade200,
-                                    ),
-                                  ),
-                                  child: Text(
-                                    state.message,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: AppConstants.medium14.copyWith(
-                                      color: Colors.red.shade700,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
                             customTextfield(
                               label: 'Email',
                               hintText: 'Masukkan Email Anda',
@@ -172,56 +145,26 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            BlocBuilder<AuthBloc, AuthState>(
-                              builder: (context, authState) {
-                                final isLoading = authState is AuthLoading;
-
-                                return SizedBox(
-                                  width: double.infinity,
-                                  height: isShortScreen ? 52 : 56,
-                                  child: ElevatedButton(
-                                    onPressed:
-                                        isLoading
-                                            ? null
-                                            : () {
-                                              context.read<AuthBloc>().add(
-                                                AuthLogin(
-                                                  email: formState.email.trim(),
-                                                  password:
-                                                      formState.password.trim(),
-                                                ),
-                                              );
-                                              context
-                                                  .read<AuthFormCubit>()
-                                                  .reset();
-                                            },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: _primaryBlue,
-                                      disabledBackgroundColor: _primaryBlue
-                                          .withOpacity(0.65),
-                                      elevation: 0,
-                                      shape: const StadiumBorder(),
-                                    ),
-                                    child:
-                                        isLoading
-                                            ? const SizedBox(
-                                              width: 22,
-                                              height: 22,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2.4,
-                                                color: Colors.white,
-                                              ),
-                                            )
-                                            : Text(
-                                              'Masuk',
-                                              style: AppConstants.semibold18
-                                                  .copyWith(
-                                                    color: Colors.white,
-                                                  ),
-                                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: isShortScreen ? 52 : 56,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  context.read<AuthFormCubit>().reset();
+                                  context.go(AppRoutes.beranda);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: _primaryBlue,
+                                  elevation: 0,
+                                  shape: const StadiumBorder(),
+                                ),
+                                child: Text(
+                                  'Masuk',
+                                  style: AppConstants.semibold18.copyWith(
+                                    color: Colors.white,
                                   ),
-                                );
-                              },
+                                ),
+                              ),
                             ),
                             const SizedBox(height: 6),
                             Center(

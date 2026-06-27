@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is SplashNavigate) {
             context.go(state.route);
-          }
+          } 
         },
         child: Scaffold(
           backgroundColor: AppConstants.white,

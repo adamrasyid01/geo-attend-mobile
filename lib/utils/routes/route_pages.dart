@@ -5,6 +5,7 @@ import 'package:geo_attend/features/absensi/presentation/pages/izin_page.dart';
 import 'package:geo_attend/features/absensi/presentation/pages/take_photo_page.dart';
 import 'package:geo_attend/features/auth/presentation/pages/login_page.dart';
 import 'package:geo_attend/features/splash/presentation/pages/splash_page.dart';
+import 'package:geo_attend/pages/beranda_page.dart';
 import 'package:geo_attend/pages/main_navigation_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,6 +14,8 @@ class RoutePages {
       const SplashScreen();
   static Widget login(BuildContext context, GoRouterState state) =>
       const LoginPage();
+  static Widget beranda(BuildContext context, GoRouterState state) =>
+      const BerandaPage();
   static Widget mainNavigationPage(BuildContext context, GoRouterState state) =>
       const MainNavigationPage (); // Replace with actual HomePage when implemented
   static Widget absensi(BuildContext context, GoRouterState state) =>
