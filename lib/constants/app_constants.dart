@@ -38,6 +38,11 @@ class AppConstants {
   static Color textField = const Color(0xFFD9D9D9);
 
   // MEDIUM TEXT STYLES
+  static TextStyle medium10 = GoogleFonts.poppins(
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    color: AppConstants.black,
+  );
   static TextStyle medium14 = GoogleFonts.poppins(
     fontSize: 14,
     fontWeight: FontWeight.w500,

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geo_attend/constants/app_constants.dart';
 import 'package:geo_attend/features/auth/presentation/bloc/auth_form_cubit.dart';
@@ -12,56 +12,47 @@ class LoginPage extends StatelessWidget {
   static const Color _primaryBlue = Color(0xFF3478F6);
   static const Color _surfaceGray = Color(0xFFF6F6F7);
   static const Color _textMuted = Color(0xFF707075);
-  static const Color _borderGray = Color(0xFFD8D8DD);
 
   @override
   Widget build(BuildContext context) {
     final keyboardInset = MediaQuery.viewInsetsOf(context).bottom;
-    final keyboardOffset =
-        keyboardInset == 0 ? 0.0 : -(keyboardInset * 0.42).clamp(0.0, 130.0);
+    final isKeyboardOpen = keyboardInset > 0;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: _surfaceGray,
-      body: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        curve: Curves.easeOutCubic,
-        transform: Matrix4.translationValues(0, keyboardOffset, 0),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final isShortScreen = constraints.maxHeight < 760;
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final isShortScreen = constraints.maxHeight < 760;
+          final logoHeightFactor =
+              isKeyboardOpen ? 0.24 : (isShortScreen ? 0.34 : 0.42);
 
-            return Column(
-              children: [
-                SizedBox(
-                  height: constraints.maxHeight * (isShortScreen ? 0.34 : 0.42),
-                  width: double.infinity,
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        20,
-                        isShortScreen ? 8 : 18,
-                        20,
-                        0,
-                      ),
-                      child: Image.asset(
-                        '${AppConstants.iconPath}/logo.png',
-                        width: MediaQuery.sizeOf(
-                          context,
-                        ).width.clamp(260.0, isShortScreen ? 320.0 : 380.0),
-                        fit: BoxFit.contain,
-                      ),
+          return SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Column(
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 220),
+                    curve: Curves.easeOutCubic,
+                    height: constraints.maxHeight * logoHeightFactor,
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      '${AppConstants.iconPath}/logo.png',
+                      width: MediaQuery.sizeOf(context).width * 0.78,
+                      height: constraints.maxHeight * logoHeightFactor * 0.78,
+                      fit: BoxFit.contain,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
+                  Container(
                     width: double.infinity,
                     padding: EdgeInsets.fromLTRB(
                       24,
                       isShortScreen ? 22 : 28,
                       24,
-                      18,
+                      18 + keyboardInset,
                     ),
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -144,7 +135,7 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const Spacer(),
+                            SizedBox(height: isKeyboardOpen ? 22 : 38),
                             SizedBox(
                               width: double.infinity,
                               height: isShortScreen ? 52 : 56,
@@ -183,13 +174,12 @@ class LoginPage extends StatelessWidget {
                       },
                     ),
                   ),
-                ),
-              ],
-            );
-          },
-        ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 }
-
