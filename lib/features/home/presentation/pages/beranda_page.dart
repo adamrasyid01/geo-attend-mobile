@@ -1,7 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:geo_attend/constants/app_constants.dart';
 import 'package:geo_attend/utils/routes/app_routes.dart';
-import 'package:geo_attend/widgets/custom_navbar.dart';
 import 'package:go_router/go_router.dart';
 
 class BerandaPage extends StatelessWidget {
@@ -36,10 +35,6 @@ class BerandaPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        selectedIndex: 0,
-        onItemTapped: (index) {},
       ),
     );
   }
@@ -277,7 +272,7 @@ class _ShortcutTile extends StatelessWidget {
                 color: BerandaPage._softBlue,
                 borderRadius: BorderRadius.circular(14),
               ),
-              child: Icon(item.icon, color: const Color(0xFF7DAEF8), size: 26),
+              child: Icon(item.icon, color: const Color(0xFF7DAEF8), size: 24),
             ),
             const SizedBox(height: 4),
             FittedBox(
@@ -287,6 +282,7 @@ class _ShortcutTile extends StatelessWidget {
                 maxLines: 1,
                 style: AppConstants.medium14.copyWith(
                   color: AppConstants.black,
+                  fontSize: 12,
                 ),
               ),
             ),

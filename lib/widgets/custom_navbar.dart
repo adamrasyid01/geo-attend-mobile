@@ -28,11 +28,11 @@ class CustomBottomNavBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _buildNavItem(Icons.home_rounded, 'Beranda', 0),
-          _buildNavItem(Icons.notifications_none_rounded, 'Notifikasi', 1),
+          _buildNavItem(Icons.home_rounded, 'Home', 0),
+          _buildNavItem(Icons.notifications_none_rounded, 'Inbox', 1),
           _buildPresenceItem(),
-          _buildNavItem(Icons.article_outlined, 'Pengumuman', 3),
-          _buildNavItem(Icons.person_outline_rounded, 'Profil', 4),
+          _buildNavItem(Icons.groups_rounded, 'Staff', 3),
+          _buildNavItem(Icons.person_outline_rounded, 'Profile', 4),
         ],
       ),
     );

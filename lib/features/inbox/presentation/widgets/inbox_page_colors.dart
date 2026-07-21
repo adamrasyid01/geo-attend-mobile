@@ -1,0 +1,14 @@
+﻿import 'package:flutter/material.dart';
+
+class InboxPageColors {
+  const InboxPageColors._();
+
+  static const Color pageBackground = Color(0xFFF6F6F6);
+  static const Color primaryBlue = Color(0xFF2E72FF);
+  static const Color softBlue = Color(0xFFEAF3FF);
+  static const Color textMuted = Color(0xFF777777);
+  static const Color borderColor = Color(0xFFE8E8E8);
+  static const Color orange = Color(0xFFFF9F2D);
+  static const Color green = Color(0xFF28A745);
+  static const Color red = Color(0xFFFF5B5B);
+}

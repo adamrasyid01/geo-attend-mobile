@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geo_attend/utils/routes/app_routes.dart';
 import 'package:geo_attend/constants/app_constants.dart';
-import 'package:geo_attend/widgets/custom_navbar.dart';
 import 'package:go_router/go_router.dart';
 
 class AbsensiPage extends StatelessWidget {
@@ -142,10 +141,6 @@ class AbsensiPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBar(
-        selectedIndex: 0,
-        onItemTapped: (index) {},
-      ),
     );
   }
 
@@ -182,3 +177,5 @@ class AbsensiPage extends StatelessWidget {
     );
   }
 }
+
+

@@ -15,8 +15,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final keyboardInset = MediaQuery.viewInsetsOf(context).bottom;
-    final isKeyboardOpen = keyboardInset > 0;
+    final isKeyboardOpen = MediaQuery.viewInsetsOf(context).bottom > 0;
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -25,40 +24,41 @@ class LoginPage extends StatelessWidget {
         builder: (context, constraints) {
           final isShortScreen = constraints.maxHeight < 760;
           final logoHeightFactor =
-              isKeyboardOpen ? 0.24 : (isShortScreen ? 0.34 : 0.42);
+              isKeyboardOpen ? 0.22 : (isShortScreen ? 0.34 : 0.42);
 
-          return SingleChildScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: Column(
-                children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 220),
-                    curve: Curves.easeOutCubic,
-                    height: constraints.maxHeight * logoHeightFactor,
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      '${AppConstants.iconPath}/logo.png',
-                      width: MediaQuery.sizeOf(context).width * 0.78,
-                      height: constraints.maxHeight * logoHeightFactor * 0.78,
-                      fit: BoxFit.contain,
+          return Column(
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 220),
+                curve: Curves.easeOutCubic,
+                height: constraints.maxHeight * logoHeightFactor,
+                width: double.infinity,
+                child: Image.asset(
+                  '${AppConstants.iconPath}/logo.png',
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(24),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
+                  child: SingleChildScrollView(
+                    primary: false,
+                    physics: const ClampingScrollPhysics(),
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.manual,
                     padding: EdgeInsets.fromLTRB(
                       24,
                       isShortScreen ? 22 : 28,
                       24,
-                      18 + keyboardInset,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(24),
-                      ),
+                      18,
                     ),
                     child: BlocBuilder<AuthFormCubit, AuthFormState>(
                       builder: (context, formState) {
@@ -67,18 +67,18 @@ class LoginPage extends StatelessWidget {
                           children: [
                             Text(
                               'Selamat Datang',
-                              style: AppConstants.bold24.copyWith(
+                              style: AppConstants.bold20.copyWith(
                                 color: const Color(0xFF16171A),
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               'Masuk dengan Username dan Password',
-                              style: AppConstants.regular15.copyWith(
+                              style: AppConstants.medium14.copyWith(
                                 color: _textMuted,
                               ),
                             ),
-                            SizedBox(height: isShortScreen ? 18 : 24),
+                            SizedBox(height: isShortScreen ? 18 : 20),
                             customTextfield(
                               label: 'Email',
                               hintText: 'Masukkan Email Anda',
@@ -135,7 +135,7 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(height: isKeyboardOpen ? 22 : 38),
+                            SizedBox(height: isKeyboardOpen ? 22 : 12),
                             SizedBox(
                               width: double.infinity,
                               height: isShortScreen ? 52 : 56,
@@ -164,7 +164,7 @@ class LoginPage extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: AppConstants.regular15.copyWith(
+                                style: AppConstants.medium14.copyWith(
                                   color: _textMuted,
                                 ),
                               ),
@@ -174,9 +174,9 @@ class LoginPage extends StatelessWidget {
                       },
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           );
         },
       ),
