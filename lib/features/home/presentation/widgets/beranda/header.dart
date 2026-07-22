@@ -1,9 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:geo_attend/constants/app_constants.dart';
-import 'package:geo_attend/features/home/presentation/widgets/home_page_colors.dart';
 
-class AttendanceHeader extends StatelessWidget {
-  const AttendanceHeader({super.key, required this.onCheckInTap});
+class Header extends StatelessWidget {
+  const Header({super.key, required this.onCheckInTap});
 
   final VoidCallback onCheckInTap;
 
@@ -13,7 +12,7 @@ class AttendanceHeader extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 18, 16, 20),
       decoration: BoxDecoration(
-        color: HomePageColors.primaryBlue,
+        color: AppConstants.primaryBlue,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -61,7 +60,7 @@ class AttendanceHeader extends StatelessWidget {
                         child: Text(
                           'Kamis, 28 Agustus 2025',
                           style: AppConstants.medium14.copyWith(
-                            color: HomePageColors.primaryBlue,
+                            color: AppConstants.primaryBlue,
                             fontSize: 12,
                           ),
                         ),
@@ -69,7 +68,7 @@ class AttendanceHeader extends StatelessWidget {
                       Text(
                         '09.00 - 18.00',
                         style: AppConstants.medium14.copyWith(
-                          color: HomePageColors.primaryBlue,
+                          color: AppConstants.primaryBlue,
                           fontSize: 12,
                         ),
                       ),
@@ -85,7 +84,7 @@ class AttendanceHeader extends StatelessWidget {
                           onTap: onCheckInTap,
                           child: const _CheckStatus(
                             icon: Icons.login_rounded,
-                            iconColor: HomePageColors.orange,
+                            iconColor: AppConstants.orange,
                             label: 'Check in',
                             time: '08.55.08',
                           ),
@@ -94,13 +93,13 @@ class AttendanceHeader extends StatelessWidget {
                       Container(
                         width: 1,
                         height: 42,
-                        color: HomePageColors.borderColor,
+                        color: AppConstants.borderColor,
                         margin: const EdgeInsets.symmetric(horizontal: 12),
                       ),
                       const Expanded(
                         child: _CheckStatus(
                           icon: Icons.logout_rounded,
-                          iconColor: HomePageColors.red,
+                          iconColor: AppConstants.red,
                           label: 'Check out',
                           time: '-',
                         ),
@@ -161,3 +160,5 @@ class _CheckStatus extends StatelessWidget {
     );
   }
 }
+
+

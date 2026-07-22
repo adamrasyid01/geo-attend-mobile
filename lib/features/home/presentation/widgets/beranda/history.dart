@@ -1,9 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:geo_attend/constants/app_constants.dart';
-import 'package:geo_attend/features/home/presentation/widgets/home_page_colors.dart';
 
-class AttendanceHistorySection extends StatelessWidget {
-  const AttendanceHistorySection({super.key});
+class History extends StatelessWidget {
+  const History({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +78,7 @@ class _HistoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppConstants.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: HomePageColors.borderColor),
+        border: Border.all(color: AppConstants.borderColor),
       ),
       child: Row(
         children: [
@@ -113,14 +112,14 @@ class _HistoryCard extends StatelessWidget {
           Container(
             width: 1,
             height: 54,
-            color: HomePageColors.borderColor,
+            color: AppConstants.borderColor,
             margin: const EdgeInsets.symmetric(horizontal: 10),
           ),
           const Expanded(
             flex: 10,
             child: _HistoryTime(
               icon: Icons.login_rounded,
-              iconColor: HomePageColors.orange,
+              iconColor: AppConstants.orange,
               label: 'Check in',
               time: '08.59.18',
             ),
@@ -130,7 +129,7 @@ class _HistoryCard extends StatelessWidget {
             flex: 10,
             child: _HistoryTime(
               icon: Icons.logout_rounded,
-              iconColor: HomePageColors.red,
+              iconColor: AppConstants.red,
               label: 'Check out',
               time: '18.34.09',
             ),
@@ -189,3 +188,5 @@ class _HistoryTime extends StatelessWidget {
     );
   }
 }
+
+

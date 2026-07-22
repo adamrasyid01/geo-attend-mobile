@@ -8,6 +8,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geo_attend/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:geo_attend/features/auth/presentation/bloc/auth_form_cubit.dart';
 import 'package:geo_attend/features/auth/presentation/bloc/auth_view_cubit.dart';
+import 'package:geo_attend/features/home/presentation/bloc/calendar_cubit.dart';
+import 'package:geo_attend/features/home/presentation/bloc/select_jadwal_cubit.dart';
 import 'package:geo_attend/core/di/import_init_injection.dart';
 
 void main() async {
@@ -34,6 +36,12 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthViewCubit>(
           create: (context) => myInjection<AuthViewCubit>(),
         ),
+        BlocProvider<SelectJadwalCubit>(
+          create: (context) => myInjection<SelectJadwalCubit>(),
+        ),
+        BlocProvider<CalendarCubit>(
+          create: (context) => myInjection<CalendarCubit>(),
+        ),
       ],
       child: SafeArea(
         child: MaterialApp.router(
@@ -49,3 +57,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+

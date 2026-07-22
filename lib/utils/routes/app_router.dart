@@ -1,4 +1,4 @@
-﻿import 'package:geo_attend/pages/main_navigation_page.dart';
+import 'package:geo_attend/pages/main_navigation_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes.dart';
@@ -28,6 +28,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(path: AppRoutes.takePhoto, builder: RoutePages.takePhoto),
     GoRoute(path: AppRoutes.izin, builder: RoutePages.izin),
     GoRoute(path: AppRoutes.history, builder: RoutePages.history),
+    GoRoute(path: AppRoutes.jadwal, builder: RoutePages.jadwal),
   ],
 );
 
@@ -40,4 +41,5 @@ int _bottomNavIndexFromPath(String path) {
     _ => 0,
   };
 }
+
 

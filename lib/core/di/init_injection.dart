@@ -35,5 +35,14 @@ Future<void> initInjection() async {
   myInjection.registerFactory<AuthViewCubit>(
     () => AuthViewCubit(),
   );
+  myInjection.registerFactory<SelectJadwalCubit>(
+    () => SelectJadwalCubit(),
+  );
+  myInjection.registerFactory<CalendarCubit>(
+    () => CalendarCubit(),
+  );
 
 }
+
+
+

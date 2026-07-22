@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:geo_attend/features/absensi/presentation/pages/absensi_page.dart';
 import 'package:geo_attend/features/absensi/presentation/pages/history_page.dart';
 import 'package:geo_attend/features/absensi/presentation/pages/izin_page.dart';
@@ -6,6 +6,7 @@ import 'package:geo_attend/features/absensi/presentation/pages/take_photo_page.d
 import 'package:geo_attend/features/auth/presentation/pages/login_page.dart';
 import 'package:geo_attend/features/splash/presentation/pages/splash_page.dart';
 import 'package:geo_attend/features/home/presentation/pages/beranda_page.dart';
+import 'package:geo_attend/features/home/presentation/pages/jadwal_page.dart';
 import 'package:geo_attend/features/inbox/presentation/pages/inbox_page.dart';
 import 'package:geo_attend/features/staff/presentation/pages/staff_page.dart';
 import 'package:geo_attend/features/profil/presentation/pages/profil_page.dart';
@@ -33,6 +34,9 @@ class RoutePages {
   static Widget izin(BuildContext context, GoRouterState state) => IzinPage();
   static Widget history(BuildContext context, GoRouterState state) =>
       const HistoryPage();
+  static Widget jadwal(BuildContext context, GoRouterState state) =>
+      const JadwalPage();
 }
+
 
 

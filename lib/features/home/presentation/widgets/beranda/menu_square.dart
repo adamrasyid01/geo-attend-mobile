@@ -1,21 +1,22 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:geo_attend/constants/app_constants.dart';
-import 'package:geo_attend/features/home/presentation/widgets/home_page_colors.dart';
+import 'package:geo_attend/utils/routes/app_routes.dart';
+import 'package:go_router/go_router.dart';
 
-class ShortcutGrid extends StatelessWidget {
-  const ShortcutGrid({super.key});
+class MenuSquare extends StatelessWidget {
+  const MenuSquare({super.key});
 
   @override
   Widget build(BuildContext context) {
     const items = [
-      _ShortcutItem(Icons.calendar_month_rounded, 'Jadwal'),
-      _ShortcutItem(Icons.assignment_rounded, 'Izin'),
-      _ShortcutItem(Icons.beach_access_rounded, 'Cuti'),
-      _ShortcutItem(Icons.work_history_rounded, 'Lembur'),
-      _ShortcutItem(Icons.sick_rounded, 'Sakit'),
-      _ShortcutItem(Icons.home_work_rounded, 'WFH'),
-      _ShortcutItem(Icons.edit_note_rounded, 'Catatan'),
-      _ShortcutItem(Icons.task_alt_rounded, 'Tugas'),
+      _MenuItem(Icons.calendar_month_rounded, 'Jadwal', AppRoutes.jadwal),
+      _MenuItem(Icons.assignment_rounded, 'Izin'),
+      _MenuItem(Icons.beach_access_rounded, 'Cuti'),
+      _MenuItem(Icons.work_history_rounded, 'Lembur'),
+      _MenuItem(Icons.sick_rounded, 'Sakit'),
+      _MenuItem(Icons.home_work_rounded, 'WFH'),
+      _MenuItem(Icons.edit_note_rounded, 'Catatan'),
+      _MenuItem(Icons.task_alt_rounded, 'Tugas'),
     ];
 
     return Container(
@@ -37,7 +38,7 @@ class ShortcutGrid extends StatelessWidget {
             runSpacing: 16,
             children: [
               for (final item in items)
-                SizedBox(width: itemWidth, child: _ShortcutTile(item: item)),
+                SizedBox(width: itemWidth, child: _MenuTile(item: item)),
             ],
           );
         },
@@ -46,32 +47,32 @@ class ShortcutGrid extends StatelessWidget {
   }
 }
 
-class _ShortcutItem {
-  const _ShortcutItem(this.icon, this.label);
+class _MenuItem {
+  const _MenuItem(this.icon, this.label, [this.route]);
 
   final IconData icon;
   final String label;
+  final String? route;
 }
 
-class _ShortcutTile extends StatelessWidget {
-  const _ShortcutTile({required this.item});
+class _MenuTile extends StatelessWidget {
+  const _MenuTile({required this.item});
 
-  final _ShortcutItem item;
+  final _MenuItem item;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final iconBoxSize = constraints.maxWidth.clamp(44.0, 62.0).toDouble();
-
-        return Column(
+        final content = Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               width: iconBoxSize,
               height: iconBoxSize,
               decoration: BoxDecoration(
-                color: HomePageColors.softBlue,
+                color: AppConstants.softBlue,
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Icon(item.icon, color: const Color(0xFF7DAEF8), size: 24),
@@ -90,7 +91,17 @@ class _ShortcutTile extends StatelessWidget {
             ),
           ],
         );
+
+        if (item.route == null) return content;
+
+        return InkWell(
+          onTap: () => context.push(item.route!),
+          borderRadius: BorderRadius.circular(14),
+          child: content,
+        );
       },
     );
   }
 }
+
+
