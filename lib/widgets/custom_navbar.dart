@@ -1,4 +1,5 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:geo_attend/constants/app_constants.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -28,19 +29,25 @@ class CustomBottomNavBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _buildNavItem(Icons.home_rounded, 'Home', 0),
-          _buildNavItem(Icons.notifications_none_rounded, 'Inbox', 1),
+          _buildNavItem('home.svg', 'home_fill.svg', 'Home', 0),
+          _buildNavItem('bell.svg', 'bell_fill.svg', 'Inbox', 1),
           _buildPresenceItem(),
-          _buildNavItem(Icons.groups_rounded, 'Staff', 3),
-          _buildNavItem(Icons.person_outline_rounded, 'Profile', 4),
+          _buildNavItem('staff.svg', 'staff_fill.svg', 'Staff', 3),
+          _buildNavItem('user.svg', 'user_fill.svg', 'Profile', 4),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, int index) {
+  Widget _buildNavItem(
+    String icon,
+    String activeIcon,
+    String label,
+    int index,
+  ) {
     final bool isSelected = selectedIndex == index;
     final Color color = isSelected ? _activeBlue : _mutedText;
+    final String iconAsset = isSelected ? activeIcon : icon;
 
     return Expanded(
       child: InkWell(
@@ -51,7 +58,11 @@ class CustomBottomNavBar extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(icon, color: color, size: 30),
+              SvgPicture.asset(
+                '${AppConstants.iconPath}/$iconAsset',
+                width: 30,
+                height: 30,
+              ),
               const SizedBox(height: 4),
               FittedBox(
                 fit: BoxFit.scaleDown,
@@ -96,10 +107,16 @@ class CustomBottomNavBar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18),
                         border: Border.all(color: AppConstants.white, width: 4),
                       ),
-                      child: const Icon(
-                        Icons.touch_app_rounded,
-                        color: Colors.white,
-                        size: 36,
+                      child: Center(
+                        child: SvgPicture.asset(
+                          '${AppConstants.iconPath}/finger_tap.svg',
+                          width: 36,
+                          height: 36,
+                          colorFilter: const ColorFilter.mode(
+                            Colors.white,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 2),
